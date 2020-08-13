@@ -1,0 +1,4 @@
+module CYoga [system][extern_c] {
+ header "CYoga.h"
+ export *
+}
