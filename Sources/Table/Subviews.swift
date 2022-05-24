@@ -273,7 +273,7 @@ extension UIView : ItemProtocol {
                 }
             case .superviewMargins: return layoutMarginsGuide
             case .superviewReadableContent: return readableContentGuide
-            case .keyboard: return window?.keyboardLayoutGuide ?? self
+            case .keyboard: return window?.oldKeyboardLayoutGuide ?? self
             case .sibling(let key): return siblings[key]!
             }
         }

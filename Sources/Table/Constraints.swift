@@ -85,7 +85,7 @@ extension Target {
             }
         case .superviewMargins: return superview.layoutMarginsGuide
         case .superviewReadableContent: return superview.readableContentGuide
-        case .keyboard: return window.keyboardLayoutGuide
+        case .keyboard: return window.oldKeyboardLayoutGuide
         case .sibling(let key):
             guard let sibling = siblings[key] else {
                 fatalError("Unable to find sibling view or layout guide for key: \(key)")

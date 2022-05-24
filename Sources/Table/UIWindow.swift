@@ -11,8 +11,8 @@ import UIKit
 
 extension UIWindow {
     
-    public var keyboardLayoutGuide: UILayoutGuide {
-        return storage[\.keyboardLayoutGuide, default: KeyboardLayoutGuide(self)]
+    public var oldKeyboardLayoutGuide: UILayoutGuide {
+        return storage[\.oldKeyboardLayoutGuide, default: KeyboardLayoutGuide(self)]
     }
     
 }
