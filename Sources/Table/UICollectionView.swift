@@ -82,17 +82,19 @@ public class FlexCollectionViewLayout : UICollectionViewLayout {
             collectionView.direction
         )
         snapPosition = layout.snapPosition
+        let contentWidth = CGFloat(
+            layout.items.enumerated().map { (index, item) in
+                YGNodeLayoutGetLeft(YGNodeGetChild(node, UInt32(index))!) + YGNodeLayoutGetWidth(YGNodeGetChild(node, UInt32(index))!)
+            }.max() ?? viewWidth
+        )
+        let contentHeight = CGFloat(
+            layout.items.enumerated().map { (index, item) in
+                YGNodeLayoutGetTop(YGNodeGetChild(node, UInt32(index))!) + YGNodeLayoutGetHeight(YGNodeGetChild(node, UInt32(index))!)
+            }.max() ?? viewHeight
+        )
         contentSize = CGSize(
-            width: CGFloat(
-                layout.items.enumerated().map { (index, item) in
-                    YGNodeLayoutGetLeft(YGNodeGetChild(node, UInt32(index))!) + YGNodeLayoutGetWidth(YGNodeGetChild(node, UInt32(index))!)
-                }.max() ?? viewWidth
-            ),
-            height: CGFloat(
-                layout.items.enumerated().map { (index, item) in
-                    YGNodeLayoutGetTop(YGNodeGetChild(node, UInt32(index))!) + YGNodeLayoutGetHeight(YGNodeGetChild(node, UInt32(index))!)
-                }.max() ?? viewHeight
-            )
+            width: contentWidth,
+            height: contentHeight
         )
         attributes = layout.items.filter { $0.cell != nil }.enumerated().map { (index, item) in
             let attributes = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
